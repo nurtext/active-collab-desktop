@@ -72,10 +72,10 @@ function createMainWindow()
 // App ready callback
 app.on('ready', function()
 {
-	const page = mainWindow.webContents;
-
 	locale = app.getLocale();
 	mainWindow = createMainWindow();
+	
+	const page = mainWindow.webContents;
 
 	// Set application menu based on locale
 	switch (locale)
