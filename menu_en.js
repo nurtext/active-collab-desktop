@@ -7,6 +7,9 @@ const BrowserWindow = electron.BrowserWindow;
 const shell         = electron.shell;
 const appName       = app.getName();
 
+let tpl;
+
+// Send IPC commands to browser window
 function sendAction(action)
 {
 	const win = BrowserWindow.getAllWindows()[0];
@@ -21,6 +24,7 @@ function sendAction(action)
 
 }
 
+// Template for Mac OS X
 const darwinTpl = [
 {
 	label: appName,
@@ -277,6 +281,7 @@ const darwinTpl = [
 	role: 'help'
 }];
 
+// Template for Linux/Windows
 const linuxTpl = [
 {
 	label: 'File',
@@ -450,11 +455,12 @@ const linuxTpl = [
 	role: 'help'
 }];
 
+// Help submenu
 const helpSubmenu = [
 {
 	label: `${appName} Website …`,
 	click: function() {
-		shell.openExternal('https://github.com/nurtext/active-collab-desktop');
+		shell.openExternal('https://github.com/nurtext/ActiveCollabDesktop');
 	}
 },
 {
@@ -468,7 +474,7 @@ const helpSubmenu = [
 ${app.getName()} ${app.getVersion()}
 ${process.platform} ${process.arch} ${os.release()}`;
 
-		shell.openExternal(`https://github.com/nurtext/active-collab-desktop/issues/new?body=${encodeURIComponent(body)}`);
+		shell.openExternal(`https://github.com/nurtext/ActiveCollabDesktop/issues/new?body=${encodeURIComponent(body)}`);
 	}
 },
 {
@@ -481,8 +487,7 @@ ${process.platform} ${process.arch} ${os.release()}`;
 	}
 }];
 
-let tpl;
-
+// Distinguish between Mac OS X and Linux/Windows
 if (process.platform == 'darwin')
 {
 	tpl = darwinTpl;
@@ -494,6 +499,8 @@ else
 
 }
 
+// Add help submenu to template
 tpl[tpl.length - 1].submenu = helpSubmenu;
 
+// Export finished/built template
 module.exports = electron.Menu.buildFromTemplate(tpl);

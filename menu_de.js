@@ -7,6 +7,9 @@ const BrowserWindow = electron.BrowserWindow;
 const shell         = electron.shell;
 const appName       = app.getName();
 
+let tpl;
+
+// Send IPC commands to browser window
 function sendAction(action)
 {
 	const win = BrowserWindow.getAllWindows()[0];
@@ -21,6 +24,7 @@ function sendAction(action)
 
 }
 
+// Template for Mac OS X
 const darwinTpl = [
 {
 	label: appName,
@@ -277,19 +281,20 @@ const darwinTpl = [
 	role: 'help'
 }];
 
+// Template for Linux/Windows
 const linuxTpl = [
 {
-	label: 'File',
+	label: 'Datei',
 	submenu: [
 		{
-			label: 'New Project',
+			label: 'Neues Projekt',
 			accelerator: 'CmdOrCtrl+N',
 			click: function() {
 				sendAction('new-project');
 			}
 		},
 		{
-			label: 'Find ...',
+			label: 'Suchen...',
 			accelerator: 'CmdOrCtrl+F',
 			click: function() {
 				sendAction('find');
@@ -299,7 +304,7 @@ const linuxTpl = [
 			type: 'separator'
 		},
 		{
-			label: 'Log out',
+			label: 'Abmelden',
 			click: function() {
 				sendAction('logout');
 			}
@@ -308,7 +313,7 @@ const linuxTpl = [
 			type: 'separator'
 		},
 		{
-			label: 'Quit',
+			label: 'Beenden',
 			accelerator: 'Alt+F4',
 			click: function() {
 				app.quit();
@@ -317,20 +322,20 @@ const linuxTpl = [
 	]
 },
 {
-	label: 'Edit',
+	label: 'Bearbeiten',
 	submenu: [
 		{
-			label: 'Cut',
+			label: 'Ausschneiden',
 			accelerator: 'CmdOrCtrl+X',
 			role: 'cut'
 		},
 		{
-			label: 'Copy',
+			label: 'Kopieren',
 			accelerator: 'CmdOrCtrl+C',
 			role: 'copy'
 		},
 		{
-			label: 'Paste',
+			label: 'Einfügen',
 			accelerator: 'CmdOrCtrl+V',
 			role: 'paste'
 		},
@@ -338,14 +343,14 @@ const linuxTpl = [
 			type: 'separator'
 		},
 		{
-			label: 'Preferences ...',
+			label: 'Präferenzen...',
 			accelerator: 'CmdOrCtrl+,',
 			click: function() {
 				sendAction('preferences');
 			}
 		},
 		{
-			label: 'User Profile ...',
+			label: 'Profil...',
 			accelerator: 'CmdOrCtrl+Alt+,',
 			click: function() {
 				sendAction('profile');
@@ -354,52 +359,52 @@ const linuxTpl = [
 	]
 },
 {
-	label: 'View',
+	label: 'Ansicht',
 	submenu: [
 		{
-			label: 'Projects',
+			label: 'Projekte',
 			accelerator: 'CmdOrCtrl+1',
 			click: function() {
 				sendAction('goto-projects');
 			}
 		},
 		{
-			label: 'My Work',
+			label: 'Meine Arbeit',
 			accelerator: 'CmdOrCtrl+2',
 			click: function() {
 				sendAction('goto-my-work');
 			}
 		},
 		{
-			label: 'Activity',
+			label: 'Aktivität',
 			accelerator: 'CmdOrCtrl+3',
 			click: function() {
 				sendAction('goto-activity');
 			}
 		},
 		{
-			label: 'Calendar',
+			label: 'Kalender',
 			accelerator: 'CmdOrCtrl+4',
 			click: function() {
 				sendAction('goto-calendar');
 			}
 		},
 		{
-			label: 'People',
+			label: 'Personen',
 			accelerator: 'CmdOrCtrl+5',
 			click: function() {
 				sendAction('goto-people');
 			}
 		},
 		{
-			label: 'Invoices',
+			label: 'Rechnungen',
 			accelerator: 'CmdOrCtrl+6',
 			click: function() {
 				sendAction('goto-invoices');
 			}
 		},
 		{
-			label: 'Estimates',
+			label: 'Schätzungen',
 			accelerator: 'CmdOrCtrl+7',
 			click: function() {
 				sendAction('goto-estimates');
@@ -409,14 +414,14 @@ const linuxTpl = [
 			type: 'separator'
 		},
 		{
-			label: 'Reports',
+			label: 'Berichte',
 			accelerator: 'CmdOrCtrl+8',
 			click: function() {
 				sendAction('goto-reports');
 			}
 		},
 		{
-			label: 'Trash',
+			label: 'Papierkorb',
 			accelerator: 'CmdOrCtrl+9',
 			click: function() {
 				sendAction('goto-trash');
@@ -426,7 +431,7 @@ const linuxTpl = [
 			type: 'separator'
 		},
 		{
-			label: 'Completed Projects',
+			label: 'Abgeschlossene Projekte',
 			accelerator: 'CmdOrCtrl+0',
 			click: function() {
 				sendAction('goto-completed-projects');
@@ -436,7 +441,7 @@ const linuxTpl = [
 			type: 'separator'
 		},
 		{
-			label: 'Reload',
+			label: 'Seite neu laden',
 			accelerator: 'CmdOrCtrl+R',
 			click: function() {
 				const win = BrowserWindow.getAllWindows()[0];
@@ -450,25 +455,26 @@ const linuxTpl = [
 	role: 'help'
 }];
 
+// Help submenu
 const helpSubmenu = [
 {
 	label: `${appName} Webseite …`,
 	click: function() {
-		shell.openExternal('https://github.com/nurtext/active-collab-desktop');
+		shell.openExternal('https://github.com/nurtext/ActiveCollabDesktop');
 	}
 },
 {
 	label: 'Einen Fehler melden …',
 	click: function() {
 		const body = `
-**Please succinctly describe your issue and steps to reproduce it.**
+**Please describe your issue and steps to reproduce it.**
 
 -
 
 ${app.getName()} ${app.getVersion()}
 ${process.platform} ${process.arch} ${os.release()}`;
 
-		shell.openExternal(`https://github.com/nurtext/active-collab-desktop/issues/new?body=${encodeURIComponent(body)}`);
+		shell.openExternal(`https://github.com/nurtext/ActiveCollabDesktop/issues/new?body=${encodeURIComponent(body)}`);
 	}
 },
 {
@@ -481,8 +487,7 @@ ${process.platform} ${process.arch} ${os.release()}`;
 	}
 }];
 
-let tpl;
-
+// Distinguish between Mac OS X and Linux/Windows
 if (process.platform == 'darwin')
 {
 	tpl = darwinTpl;
@@ -494,6 +499,8 @@ else
 
 }
 
+// Add help submenu to template
 tpl[tpl.length - 1].submenu = helpSubmenu;
 
+// Export finished/built template
 module.exports = electron.Menu.buildFromTemplate(tpl);
