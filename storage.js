@@ -5,6 +5,7 @@ const fs           = require('fs');
 const path         = require('path');
 const dataFilePath = path.join(app.getPath('userData'), 'settings.json');
 
+// Read data from storage
 function readData()
 {
 	try
@@ -20,6 +21,7 @@ function readData()
 
 }
 
+// Write data to storage
 exports.set = (key, val) =>
 {
 	const data = readData();
