@@ -9,12 +9,12 @@
 ## Todo list
 
 - [x] German translation for Linux/Windows menus
-- [ ] Write „How to” for self-hosted installations
-- [ ] Add releases with binaries
+- [ ] Wiki article for pointing to self-hosted installations
+- [x] Add releases with binaries
 
 ## Installation
 
-### OS X
+### Mac OS X
 
 [**Download**](https://github.com/nurtext/active-collab-desktop/releases/latest), unzip, and move `Active Collab Desktop.app` to the `/Applications` directory.
 
