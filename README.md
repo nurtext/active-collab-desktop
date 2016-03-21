@@ -1,10 +1,16 @@
 # <img src="media/Icon.png" width="45" align="left">&nbsp;Active Collab Desktop
 
-> Unofficial Active Collab Desktop Application
+> Unofficial Active Collab Desktop Application based on [Electron](https://github.com/atom/electron).
 
 [![](media/Screenshot.png)](https://github.com/nurtext/active-collab-desktop/releases/latest)
 
-*OS X 10.8+, Windows 7+ & Linux are supported.*
+*Supported platforms: Mac OS X 10.8+, Windows 7+ & Linux*
+
+## To do
+
+- [ ] German translation for Linux/Windows menus
+- [ ] Write „How to” for self-hosted installations
+- [ ] Add releases with binaries
 
 ## Installation
 
