@@ -9,7 +9,7 @@
 ## Todo list
 
 - [x] German translation for Linux/Windows menus
-- [ ] Wiki article for pointing to self-hosted installations
+- [x] Wiki article for pointing to self-hosted installations
 - [x] Add releases with binaries
 
 ## Installation
@@ -36,6 +36,10 @@ Terminal=false
 Type=Application
 Icon=/full/path/to/folder/active-collab-desktop/resources/app/media/Icon.png
 ```
+
+## Pointing to a self-hosted installation of Active Collab
+
+Please see the [Wiki](https://github.com/nurtext/active-collab-desktop/wiki) for further information about this topic.
 
 ## Development
 
