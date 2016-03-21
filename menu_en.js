@@ -460,21 +460,21 @@ const helpSubmenu = [
 {
 	label: `${appName} Website …`,
 	click: function() {
-		shell.openExternal('https://github.com/nurtext/ActiveCollabDesktop');
+		shell.openExternal('https://github.com/nurtext/active-collab-desktop');
 	}
 },
 {
 	label: 'Report an Issue …',
 	click: function() {
 		const body = `
-**Please succinctly describe your issue and steps to reproduce it.**
+**Please describe your issue and steps to reproduce it.**
 
 -
 
 ${app.getName()} ${app.getVersion()}
 ${process.platform} ${process.arch} ${os.release()}`;
 
-		shell.openExternal(`https://github.com/nurtext/ActiveCollabDesktop/issues/new?body=${encodeURIComponent(body)}`);
+		shell.openExternal(`https://github.com/nurtext/active-collab-desktop/issues/new?body=${encodeURIComponent(body)}`);
 	}
 },
 {
