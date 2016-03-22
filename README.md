@@ -1,6 +1,6 @@
 # <img src="media/Icon.png" width="45" align="left">&nbsp;Active Collab Desktop
 
-> Unofficial Active Collab Desktop application based on [Electron](http://electron.atom.io).
+> Unofficial [ActiveCollab](https://www.activecollab.com) Desktop application based on [Electron](http://electron.atom.io).
 
 [![](media/Screenshot.png)](https://github.com/nurtext/active-collab-desktop/releases/latest)
 
