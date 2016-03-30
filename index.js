@@ -24,6 +24,9 @@ function createMainWindow()
 	// Open window with default size or last window state
 	const lastWindowState = storage.get('lastWindowState') || {width: 1024, height: 768};
 
+	// Check if window was opened fullscreen
+	const isFullscreen = storage.get('isFullscreen') || false;
+
 	// Create new browser window
 	const win = new electron.BrowserWindow(
 	{
@@ -65,6 +68,8 @@ function createMainWindow()
 	});
 
 	win.loadURL(acURL);
+	win.setFullScreen(isFullscreen);
+	
 	return win;
 
 }
@@ -74,7 +79,7 @@ app.on('ready', function()
 {
 	locale = app.getLocale();
 	mainWindow = createMainWindow();
-	
+
 	const page = mainWindow.webContents;
 
 	// Set application menu based on locale
@@ -121,6 +126,12 @@ app.on('before-quit', function()
 	if (!mainWindow.isFullScreen())
 	{
 		storage.set('lastWindowState', mainWindow.getBounds());
+		storage.set('isFullscreen', false);
+
+	}
+	else
+	{
+		storage.set('isFullscreen', true);
 
 	}
 
