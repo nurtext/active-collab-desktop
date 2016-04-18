@@ -104,9 +104,7 @@ app.on('ready', function()
 	// New window callback
 	page.on('new-window', function(e, url)
 	{
-		e.preventDefault();
-		electron.shell.openExternal(url);
-
+		mainWindow.loadURL(url);
 	});
 
 });
