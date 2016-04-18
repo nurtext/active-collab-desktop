@@ -104,12 +104,14 @@ app.on('ready', function()
 	// New window callback
 	page.on('new-window', function(e, url)
 	{
-		if ( /(.*)\.activecollab\.com/.test(url) ){
+		if (/(.*)\.activecollab\.com/.test(url))
+		{
 			mainWindow.loadURL(url);	
 		}
-		else{
+		else
+		{
 			e.preventDefault();
- 			electron.shell.openExternal(url);
+			electron.shell.openExternal(url);
 		}
 	});
 
