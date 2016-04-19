@@ -104,9 +104,15 @@ app.on('ready', function()
 	// New window callback
 	page.on('new-window', function(e, url)
 	{
-		e.preventDefault();
-		electron.shell.openExternal(url);
-
+		if (/(.*)\.activecollab\.com/.test(url))
+		{
+			mainWindow.loadURL(url);	
+		}
+		else
+		{
+			e.preventDefault();
+			electron.shell.openExternal(url);
+		}
 	});
 
 });
