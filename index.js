@@ -69,7 +69,7 @@ function createMainWindow()
 
 	win.loadURL(acURL);
 	win.setFullScreen(isFullscreen);
-	
+
 	return win;
 
 }
@@ -104,15 +104,21 @@ app.on('ready', function()
 	// New window callback
 	page.on('new-window', function(e, url)
 	{
-		if (/(.*)\.activecollab\.com/.test(url))
+		e.preventDefault();
+
+		if (/my\.activecollab\.com/.test(url))
 		{
-			mainWindow.loadURL(url);	
+			// Internal links
+			mainWindow.loadURL(url);
+
 		}
 		else
 		{
-			e.preventDefault();
+			// External link
 			electron.shell.openExternal(url);
+
 		}
+
 	});
 
 });
