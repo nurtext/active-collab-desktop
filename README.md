@@ -6,12 +6,6 @@
 
 *Supported platforms: Mac OS X 10.8+, Windows 7+ & Linux*
 
-## Todo list
-
-- [x] German translation for Linux/Windows menus
-- [x] Wiki article for pointing to self-hosted installations
-- [x] Add releases with binaries
-
 ## Installation
 
 ### Mac OS X
