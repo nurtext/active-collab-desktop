@@ -1,7 +1,7 @@
 {
   "name": "active-collab-desktop",
   "productName": "Active Collab Desktop",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Unofficial Active Collab Desktop Application",
   "license": "MIT",
   "repository": "nurtext/active-collab-desktop",
@@ -10,7 +10,7 @@
     "email": "cedric@kastner.wtf",
     "url": "github.com/nurtext"
   },
-  "electronVersion": "0.37.6",
+  "electronVersion": "1.0.1",
   "scripts": {
     "test": "xo",
     "start": "electron .",
@@ -36,12 +36,12 @@
     "collaboration"
   ],
   "dependencies": {
-    "electron-debug": "^0.6.0",
-    "electron-dl": "^0.2.0"
+    "electron-debug": "^1.0.0",
+    "electron-dl": "^1.0.0"
   },
   "devDependencies": {
-    "electron-packager": "^7.0.0",
-    "electron-prebuilt": "^0.37.6",
+    "electron-packager": "^7.0.1",
+    "electron-prebuilt": "^1.0.1",
     "xo": "*"
   },
   "xo": {
