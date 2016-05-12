@@ -1,10 +1,15 @@
 'use strict';
 
+// Require Electron modules
+const app           = require('electron').app;
+const shell         = require('electron').shell;
+const BrowserWindow = require('electron').BrowserWindow;
+const Menu          = require('electron').Menu;
+
+// Require Node modules
 const os            = require('os');
-const electron      = require('electron');
-const app           = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-const shell         = electron.shell;
+
+// Get application name
 const appName       = app.getName();
 
 let tpl;
@@ -503,4 +508,4 @@ else
 tpl[tpl.length - 1].submenu = helpSubmenu;
 
 // Export finished/built template
-module.exports = electron.Menu.buildFromTemplate(tpl);
+module.exports = Menu.buildFromTemplate(tpl);

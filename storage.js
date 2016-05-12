@@ -1,8 +1,13 @@
 'use strict';
 
-const app          = require('app');
+// Require Electron modules
+const app          = require('electron').app;
+
+// Require Node modules
 const fs           = require('fs');
 const path         = require('path');
+
+// Set path for settings file
 const dataFilePath = path.join(app.getPath('userData'), 'settings.json');
 
 // Read data from storage

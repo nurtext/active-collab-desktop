@@ -11,6 +11,7 @@
     "url": "github.com/nurtext"
   },
   "electronVersion": "1.0.1",
+  "main": "main.js",
   "scripts": {
     "test": "xo",
     "start": "electron .",

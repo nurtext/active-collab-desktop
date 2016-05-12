@@ -1,15 +1,21 @@
 'use strict';
 
-// Define some constants
-const electron   = require('electron');
-const ipc        = require('electron').ipcMain;
-const app        = electron.app;
-const path       = require('path');
-const fs         = require('fs');
-const appMenuEn  = require('./menu_en');
-const appMenuDe  = require('./menu_de');
-const storage    = require('./storage');
-const acURL      = storage.get('acURL') || 'https://my.activecollab.com/';
+// Require Electron modules
+const app           = require('electron').app;
+const shell         = require('electron').shell;
+const ipc           = require('electron').ipcMain;
+const BrowserWindow = require('electron').BrowserWindow;
+const Menu          = require('electron').Menu;
+
+// Require Node modules
+const path          = require('path');
+const fs            = require('fs');
+
+// Require local modules
+const storage       = require('./storage');
+
+// Get URL of ActiveCollab installation
+const acURL         = storage.get('acURL') || 'https://my.activecollab.com/';
 
 // Require download component
 require('electron-dl')();
@@ -28,7 +34,7 @@ function createMainWindow()
 	const isFullscreen = storage.get('isFullscreen') || false;
 
 	// Create new browser window
-	const win = new electron.BrowserWindow(
+	const win = new BrowserWindow(
 	{
 		title: app.getName(),
 		show: false,
@@ -86,11 +92,11 @@ app.on('ready', function()
 	switch (locale)
 	{
 		case 'de': // German
-			electron.Menu.setApplicationMenu(appMenuDe);
+			Menu.setApplicationMenu(require('./menus/de'));
 			break;
 
 		default: // Defaults to English
-			electron.Menu.setApplicationMenu(appMenuEn);
+			Menu.setApplicationMenu(require('./menus/en'));
 
 	}
 
@@ -115,7 +121,7 @@ app.on('ready', function()
 		else
 		{
 			// External link
-			electron.shell.openExternal(url);
+			shell.openExternal(url);
 
 		}
 
