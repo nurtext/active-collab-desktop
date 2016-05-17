@@ -112,7 +112,7 @@ app.on('ready', function()
 	{
 		e.preventDefault();
 
-		if (/my\.activecollab\.com/.test(url))
+		if (/(app|my)\.activecollab\.com/.test(url))
 		{
 			// Internal links
 			mainWindow.loadURL(url);
